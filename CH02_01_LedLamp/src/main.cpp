@@ -1,18 +1,28 @@
 #include <Arduino.h>
 
-// put function declarations here:
-int myFunction(int, int);
+#define PIN_LED 4
+#define PIN_BUTTON 5
+
+void reverseGPIO(int);
 
 void setup() {
-  // put your setup code here, to run once:
-  int result = myFunction(2, 3);
+  pinMode(PIN_LED, OUTPUT);
+  pinMode(PIN_BUTTON, INPUT);
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
+  if(digitalRead(PIN_BUTTON) == LOW) {
+    delay(200);
+    if(digitalRead(PIN_BUTTON) == LOW) {
+      reverseGPIO(PIN_LED);
+    }
+    while (digitalRead(PIN_BUTTON) == LOW);
+    delay(20);
+    while (digitalRead(PIN_BUTTON) == LOW);
+  }
 }
 
 // put function definitions here:
-int myFunction(int x, int y) {
-  return x + y;
+void reverseGPIO(int pin) {
+  digitalWrite(pin, !digitalRead(pin));
 }
