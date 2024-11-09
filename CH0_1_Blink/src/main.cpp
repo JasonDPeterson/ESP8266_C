@@ -6,7 +6,7 @@ void setup() {
   pinMode(PIN_LED, OUTPUT);
 }
 
-// Turn on #2 light, wait 1 second, turn off #2 light, wait 1 second.
+// Turn on #2 light, wait 1.0 second, turn off #2 light, wait 1.0 second.
 void loop() {
   digitalWrite(PIN_LED, HIGH);
   delay(1000);
