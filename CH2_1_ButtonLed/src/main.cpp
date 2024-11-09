@@ -1,5 +1,9 @@
 #include <Arduino.h>
 
+// Program that has a button turn on a LED by pressing the button now.  When
+// the button is released, then the LED turns off.
+
+// Defined pins 
 #define PIN_LED 4
 #define PIN_BUTTON 5
 
