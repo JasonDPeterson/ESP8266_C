@@ -1,18 +1,26 @@
 #include <Arduino.h>
 
-// put function declarations here:
-int myFunction(int, int);
+void breath(int, int);
+
+int PIN_LED = 4;
 
 void setup() {
-  // put your setup code here, to run once:
-  int result = myFunction(2, 3);
+  pinMode(PIN_LED, OUTPUT);
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
+  breath(PIN_LED, 6);
+  delay(500);
+  map(0, 0, 255, 0, 1023);
 }
 
-// put function definitions here:
-int myFunction(int x, int y) {
-  return x + y;
+void breath(int PIN_LED, int delayMs) {
+  for (int i = 0; i <= 255; i++) {
+    analogWrite(PIN_LED, i);
+    delay(delayMs);
+  }
+  for (int i = 255; i >= 0; i--) {
+    analogWrite(PIN_LED, i);
+    delay(delayMs);
+  }
 }
