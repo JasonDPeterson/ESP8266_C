@@ -1,18 +1,28 @@
 #include <Arduino.h>
+// Makes a 10 led bar look like night rider.
 
-// put function declarations here:
-int myFunction(int, int);
+byte ledPins[] = {13, 12, 14, 16, 3, 5, 4, 0, 2, 15};
+int ledCounts;
 
 void setup() {
-  // put your setup code here, to run once:
-  int result = myFunction(2, 3);
+  ledCounts = sizeof(ledPins);
+  for (int i = 0; i < ledCounts; i++) {
+    pinMode(ledPins[i], OUTPUT);
+  }
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-}
+  // from left to right turn on led bar and then turn off.
+  for (int i = 0; i < ledCounts; i++) {
+    digitalWrite(ledPins[i], HIGH);
+    delay(100);
+    digitalWrite(ledPins[i], LOW);
+  }
 
-// put function definitions here:
-int myFunction(int x, int y) {
-  return x + y;
+  // from right to left turn on led bar and the turn off.
+  for (int i = ledCounts - 1; i > -1; i--) {
+    digitalWrite(ledPins[i], HIGH);
+    delay(100);
+    digitalWrite(ledPins[i], LOW);
+  }
 }
